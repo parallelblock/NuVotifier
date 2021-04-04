@@ -1,0 +1,15 @@
+dependencies {
+    compileOnly group: "org.spongepowered", name: "spongeapi", version: "8.0.0-SNAPSHOT"
+    implementation project(":nuvotifier-api")
+    implementation project(":nuvotifier-common")
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include 'META-INF/plugins.json'
+
+        expand (
+            version: project.version,
+        )
+    }
+}

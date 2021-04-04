@@ -12,6 +12,8 @@ include 'bungeecord'
 findProject(':bungeecord')?.name = 'nuvotifier-bungeecord'
 include 'sponge'
 findProject(':sponge')?.name = 'nuvotifier-sponge'
+include 'sponge8'
+findProject(':sponge8')?.name = 'nuvotifier-sponge8'
 
 include 'universal'
 findProject(':universal')?.name = 'nuvotifier-universal'
