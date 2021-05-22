@@ -19,6 +19,8 @@ buildscript {
     }
 }
 
+sourceCompatibility = 11
+
 class NettyEpollTransformer implements Transformer {
     private java.nio.file.Path extractedNettyNative
 
@@ -51,6 +53,7 @@ dependencies {
     implementation project(":nuvotifier-bungeecord")
     implementation project(":nuvotifier-sponge")
     implementation project(":nuvotifier-velocity")
+    implementation project(":nuvotifier-velocity2")
 }
 
 shadowJar {

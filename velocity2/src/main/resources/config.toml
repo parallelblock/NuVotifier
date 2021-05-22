@@ -1,0 +1,79 @@
+# The IP to listen to. Use 0.0.0.0 if you wish to listen to all interfaces on your server. (All IP addresses)
+# This defaults to the IP you have configured your server to listen on, or 0.0.0.0 if you have not configured this.
+host = "%ip%"
+
+# Port to listen for new votes on
+port = 8192
+
+# Setting this option to true will disable handling of Protocol v1 packets. While the old protocol is not secure, this
+# option is currently not recommended as most voting sites only support the old protocol at present. However, if you are
+# using NuVotifier's proxy forwarding mechanism, enabling this option will increase your server's security.
+disable-v1-protocol = false
+
+# All tokens, labeled by the serviceName of each server list.
+[tokens]
+# Default token for all server lists, if another isn't supplied.
+default = "%default_token%"
+
+# Configuration section for all vote forwarding to NuVotifier
+[forwarding]
+# Sets whether to set up a remote method for fowarding. Supported methods:
+# - none - Does not set up a forwarding method.
+# - pluginMessaging - Sets up plugin messaging.
+# - proxy - Proxies votes to other NuVotifier servers from this server.
+method = "none"
+
+[forwarding.pluginMessaging]
+channel = "nuvotifier:votes"
+
+# Only send votes to certain servers. If a server is present on excludedServers, then votes will NOT be forwarded
+# to them. If excludedServers is not present, votes will be sent to all servers.
+# If onlySendToJoinedServer is true and a player is on one of these servers, NuVotifier will process the vote as if the
+# player was not on the network at all.
+# excludedServers = ["server1", "server2"]
+
+# If uncommented, turns excludedServers into an includedServers, where only servers on the list will be used.
+# whitelist = true
+
+# Sets which cache to use if there are no players on the server that the vote is being sent to. Supported caches:
+# - none - Votes will simply be lost when no players are present on the server.
+# - memory - Votes will be cached in memory when no players are present. When Bungee is restarted, the votes will be lost.
+# - file - Votes will be saved to a local file every 3 minutes and on shutdown and reloaded when Bungee is restarted. This is suitable for
+#   most set ups.
+cache = "file"
+# Only sends the vote to the server in which the player is currently joined.
+onlySendToJoinedServer = false
+
+# Sets which server to send the vote in the event the player is not online when the vote is cast
+# If you do not want the vote forwarded to a fallback, set this value to empty ('')
+# ONLY USED IF onlySendToJoinedServer is true!!
+joinedServerFallback = "Hub"
+
+# Defines how quickly to dump votes over a player's connection while offloading a cache in votes per second
+dumpRate = 5
+
+[forwarding.file-cache]
+# Options for file caching.
+name = "cached-votes.json"
+# days before a vote is considered 'dead' - removed from cache with a console warning. -1 signifies no cache.
+cacheTime = 10
+
+[forwarding.memory-cache]
+# Options for file caching.
+name = "cached-votes.json"
+# days before a vote is considered 'dead' - removed from cache with a console warning. -1 signifies no cache. Votes are
+# also removed on restart
+cacheTime = 10
+
+[forwarding.proxy]
+# Specify servers to proxy votes for.
+
+[forwarding.proxy.Hub]
+address = "127.0.0.1"
+port = 8193
+token = "MyKeyHere"
+
+[forwarding.proxy.Hub2]
+address = "127.0.0.1"
+port = 8194
+token = "MyKeyHere"
