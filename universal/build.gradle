@@ -50,6 +50,7 @@ dependencies {
     implementation project(":nuvotifier-bukkit")
     implementation project(":nuvotifier-bungeecord")
     implementation project(":nuvotifier-sponge")
+    implementation project(":nuvotifier-sponge8")
     implementation project(":nuvotifier-velocity")
 }
 
